@@ -1,30 +1,34 @@
 import React from 'react';
 
 export default function Traditional({ article }) {
+	// return <div>traditional</div>;
+
 	console.log({ article });
-	const { name, image, description, omnivore } = article.fields;
-	if (omnivore === 3) {
-		return (
-			<div>
-				<div>{name}</div>
-				<br />
-				<br />
-				<br />
-				<div>
-					<img src={image.fields.file.url} alt='' />
-				</div>
-				<br />
-				<br />
-				<br />
-				<div>{description}</div>
-				<br />
-				<br />
-				<br />
-				<div>{omnivore}</div>
-				<br />
-				<br />
-				<br />
-			</div>
-		);
+	if (article.length === 0) {
+		return <div>Loading .....</div>;
 	}
+
+	return (
+		<div>
+			{article.map((artic, index) => (
+				<div key={index}>
+					{artic.fields.omnivore === 3 ? (
+						<div>
+							<div>{artic.fields.name}</div>
+
+							<div>
+								<img src={artic.fields.image.fields.file.url} alt='' />
+							</div>
+
+							<div>{artic.fields.description}</div>
+
+							<div>{artic.fields.omnivore}</div>
+						</div>
+					) : (
+						console.log('tarditional')
+					)}
+				</div>
+			))}
+		</div>
+	);
 }

@@ -1,29 +1,25 @@
 import React from 'react';
 
 export default function Post({ article }) {
+	// return <div>post</div>;
 	console.log({ article });
-	const { name, image, description, omnivore } = article.fields;
+	if (article.length === 0) {
+		return <div>Loading .....</div>;
+	}
 
 	return (
 		<div>
-			<div>{name}</div>
-			<br />
-			<br />
-			<br />
-			<div>
-				<img src={image.fields.file.url} alt='' />
-			</div>
-			<br />
-			<br />
-			<br />
-			<div>{description}</div>
-			<br />
-			<br />
-			<br />
-			<div>{omnivore}</div>
-			<br />
-			<br />
-			<br />
+			{article.map((artic, index) => (
+				<div key={index}>
+					{artic.fields.name}
+
+					<img src={artic.fields.image.fields.file.url} alt='' />
+
+					{artic.fields.description}
+
+					{artic.fields.omnivore}
+				</div>
+			))}
 		</div>
 	);
 }
