@@ -29,7 +29,7 @@ export default function App() {
 
 	return (
 		<div className='App'>
-			
+			<Header />
 
 			{/* <div className='header'>
 				<BrowserRouter>
