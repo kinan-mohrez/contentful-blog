@@ -12,25 +12,28 @@ export default function Traditional({ article }) {
 		return <div>Loading .....</div>;
 	}
 
-	// const { omnivore } = article.fields;
-	// if (omnivore === 3) {
 	return (
-		<div>
+		<div className='recipes'>
 			{article !== [] &&
-				article.map((artic, index) => (
-					<div key={index} className='recipe'>
-						<h2>{artic.fields.name}</h2>
+				article.map(
+					(artic, index) =>
+						artic.fields.omnivore === 3 && (
+							<div key={index} className='recipe'>
+								<h2>{artic.fields.name}</h2>
 
-						<img src={artic.fields.image.fields.file.url} alt='' />
-						<br />
-						<button onClick={toggle}>Details</button>
-						{showDetails && (
-							<div className='ingredient-text'>{artic.fields.description}</div>
-						)}
+								<img src={artic.fields.image.fields.file.url} alt='' />
+								<br />
+								<button onClick={toggle}>Details</button>
+								{showDetails && (
+									<div className='ingredient-text'>
+										{artic.fields.description}
+									</div>
+								)}
 
-						{artic.fields.omnivore}
-					</div>
-				))}
+								{artic.fields.omnivore}
+							</div>
+						)
+				)}
 		</div>
 	);
 }
