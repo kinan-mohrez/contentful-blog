@@ -12,16 +12,23 @@ export default function Post({ article }) {
 		return <div>Loading .....</div>;
 	}
 
-	const { name, image, description, omnivore } = article.fields;
 	return (
-		<div className='recipe'>
-			<h2>{name}</h2>
+		<div className='recipes'>
+			{article !== [] &&
+				article.map((artic, index) => (
+					<div key={index} className='recipe'>
+						<h2>{artic.fields.name}</h2>
 
-			<img src={image.fields.file.url} alt={name} />
-			<br />
-			<button onClick={toggle}>Details</button>
-			{showDetails && <div className='ingredient-text'>{description}</div>}
-			{omnivore}
+						<img src={artic.fields.image.fields.file.url} alt='' />
+						<br />
+						<button onClick={toggle}>Details</button>
+						{showDetails && (
+							<div className='ingredient-text'>{artic.fields.description}</div>
+						)}
+
+						{artic.fields.omnivore}
+					</div>
+				))}
 		</div>
 	);
 }
