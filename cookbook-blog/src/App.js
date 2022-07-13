@@ -3,7 +3,14 @@ import './App.css';
 import { client } from './client';
 import Post from './components/Post';
 import Posts from './components/Posts';
-import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
+import Header from './components/Header';
+import {
+	BrowserRouter,
+	Routes,
+	Route,
+	NavLink,
+	Router,
+} from 'react-router-dom';
 import Traditional from './components/Traditional';
 import Vegetarian from './components/Vegetarian';
 import Vegan from './components/Vegan';
@@ -22,11 +29,7 @@ export default function App() {
 
 	return (
 		<div className='App'>
-			<h1>Recipes Blog</h1>
-			<form className='search-form'>
-				<input type='text' placeholder='Search ....' autoComplete='off' />
-				<input type='submit' value='search' />
-			</form>
+			<Header />
 
 			<BrowserRouter>
 				<div>
