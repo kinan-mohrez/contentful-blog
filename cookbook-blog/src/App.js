@@ -3,6 +3,7 @@ import './App.css';
 import { client } from './client';
 import Post from './components/Post';
 import Posts from './components/Posts';
+import Header from './components/Header';
 import {
 	BrowserRouter,
 	Routes,
@@ -28,11 +29,7 @@ export default function App() {
 
 	return (
 		<div className='App'>
-			<h1>Recipes Blog</h1>
-			<form className='search-form'>
-				<input type='text' placeholder='Search ....' autoComplete='off' />
-				<input type='submit' value='search' />
-			</form>
+			
 
 			{/* <div className='header'>
 				<BrowserRouter>
