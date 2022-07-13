@@ -1,34 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function Vegan({ article }) {
-	// return <div>vegan</div>;
-
 	console.log({ article });
+
+	const [showDetails, setShowDetails] = useState(false);
+	function toggle() {
+		setShowDetails(!showDetails);
+	}
+
 	if (article.length === 0) {
 		return <div>Loading .....</div>;
 	}
 
-	return (
-		<div>
-			{article.map((artic, index) => (
-				<div key={index}>
-					{artic.fields.omnivore === 1 ? (
-						<div>
-							<div>{artic.fields.name}</div>
+	const { name, image, description, omnivore } = article.fields;
+	if (omnivore === 1) {
+		return (
+			<div className='recipe'>
+				<h2>{name}</h2>
 
-							<div>
-								<img src={artic.fields.image.fields.file.url} alt='' />
-							</div>
+				<img src={image.fields.file.url} alt={name} />
+				<br />
+				<button onClick={toggle}>Details</button>
+				{showDetails && <div className='ingredient-text'>{description}</div>}
 
-							<div>{artic.fields.description}</div>
-
-							<div>{artic.fields.omnivore}</div>
-						</div>
-					) : (
-						console.log('vegan')
-					)}
-				</div>
-			))}
-		</div>
-	);
+				{omnivore}
+			</div>
+		);
+	}
 }
