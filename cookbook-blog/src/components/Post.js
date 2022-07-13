@@ -1,24 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function Post({ article }) {
 	console.log({ article });
-	const { name, image, description } = article.fields;
+
+	const [showDetails, setShowDetails] = useState(false);
+	function toggle() {
+		setShowDetails(!showDetails);
+	}
+
+	if (article.length === 0) {
+		return <div>Loading .....</div>;
+	}
+
+	const { name, image, description, omnivore } = article.fields;
 	return (
-		<div>
-			<div>{name}</div>
+		<div className='recipe'>
+			<h2>{name}</h2>
+
+			<img src={image.fields.file.url} alt={name} />
 			<br />
-			<br />
-			<br />
-			<div>
-				<img src={image.fields.file.url} />
-			</div>
-			<br />
-			<br />
-			<br />
-			<div>{description}</div>
-			<br />
-			<br />
-			<br />
+			<button onClick={toggle}>Details</button>
+			{showDetails && <div className='ingredient-text'>{description}</div>}
+			{omnivore}
 		</div>
 	);
 }
