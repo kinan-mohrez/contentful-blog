@@ -3,11 +3,8 @@ import './App.css';
 import { client } from './client';
 import Header from './components/Header';
 
-
-
 export default function App() {
 	const [articles, setArticles] = useState([]);
-
 	useEffect(() => {
 		client
 			.getEntries()
@@ -19,8 +16,7 @@ export default function App() {
 
 	return (
 		<div className='App'>
-			<Header articles={articles}/>
-
+			<Header articles={articles} />
 		</div>
 	);
 }
