@@ -61,7 +61,7 @@ h1 {
   color: #555;
 }
 
-.search-form input[type="submit"] {
+.search-form input[type="button"] {
   width: 25%;
   text-transform: uppercase;
   background-color: #F15025;
@@ -125,6 +125,10 @@ a:hover{
   border-radius: 0.5rem;
   object-fit: cover;
   height: 300px;
+  transition: transform 0.5s
+}
+.recipe img:hover {
+  transform: scale(1.2);
 }
 
 .recipe a {

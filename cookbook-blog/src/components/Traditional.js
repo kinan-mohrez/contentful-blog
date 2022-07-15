@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 export default function Traditional({ article }) {
-	console.log({ article });
+	// console.log({ article });
 
 	const [showDetails, setShowDetails] = useState(false);
 	function toggle() {
