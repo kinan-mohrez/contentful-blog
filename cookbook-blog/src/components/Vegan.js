@@ -9,31 +9,25 @@ export default function Vegan({ article }) {
 	}
 
 	if (article.length === 0) {
-		return <div>Loading .....</div>;
+		return <span className='loader'></span>;
 	}
 
 	return (
-		<div className='recipes'>
-			{article !== [] &&
-				article.map(
-					(artic, index) =>
-						artic.fields.omnivore === 1 && (
-							<div key={index} className='recipe'>
-								<h2>{artic.fields.name}</h2>
+		<div>
+			{article.fields.omnivore === 1 && (
+				<div className='recipe'>
+					<h2>{article.fields.name}</h2>
 
-								<img src={artic.fields.image.fields.file.url} alt='' />
-								<br />
-								<button onClick={toggle}>Details</button>
-								{showDetails && (
-									<div className='ingredient-text'>
-										{artic.fields.description}
-									</div>
-								)}
+					<img src={article.fields.image.fields.file.url} alt='' />
+					<br />
+					<button onClick={toggle}>Details</button>
+					{showDetails && (
+						<div className='ingredient-text'>{article.fields.description}</div>
+					)}
 
-								{artic.fields.omnivore}
-							</div>
-						)
-				)}
+					{article.fields.omnivore}
+				</div>
+			)}
 		</div>
 	);
 }

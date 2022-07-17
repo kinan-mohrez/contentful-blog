@@ -26,22 +26,15 @@ export default function Header({ articles }) {
 			});
 		});
 	}
+	if (articles.length === 0) {
+		return <span className='loader'></span>;
+	}
 
 	return (
 		<div>
 			<h1>Recipes Blog</h1>
-			<form className='search-form'>
-				<input
-					type='text'
-					placeholder='Search ....'
-					autoComplete='off'
-					ref={inputText}
-				/>
-				<input type='button' value='search' onClick={onSubmit} />
-			</form>
-
 			<BrowserRouter>
-				<nav className='navbar'>
+				<nav className='search-form'>
 					<NavLink to='/' className='navlink'>
 						HOME
 					</NavLink>
@@ -54,20 +47,60 @@ export default function Header({ articles }) {
 					<NavLink to='/traditional' className='navlink'>
 						TRADITIONELL
 					</NavLink>
+
+					<form>
+						<input
+							type='text'
+							placeholder='Search ....'
+							autoComplete='off'
+							ref={inputText}
+						/>
+						<input type='button' value='search' onClick={onSubmit} />
+					</form>
 				</nav>
 
-				<Routes>
-					<Route path='/' element={<Post article={articles} />} />
-					<Route
-						path='/traditional'
-						element={<Traditional article={articles} />}
-					/>
-					<Route
-						path='/vegetarian'
-						element={<Vegetarian article={articles} />}
-					/>
-					<Route path='/vegan' element={<Vegan article={articles} />} />
-				</Routes>
+				<div className='recipes'>
+					<Routes>
+						<Route
+							path='/'
+							element={
+								articles !== [] &&
+								articles.map((artic, index) => (
+									<Post key={index} article={artic} />
+								))
+							}
+						/>
+
+						<Route
+							path='/traditional'
+							element={
+								articles !== [] &&
+								articles.map((artic, index) => (
+									<Traditional key={index} article={artic} />
+								))
+							}
+						/>
+
+						<Route
+							path='/vegetarian'
+							element={
+								articles !== [] &&
+								articles.map((artic, index) => (
+									<Vegetarian key={index} article={artic} />
+								))
+							}
+						/>
+						<Route
+							path='/vegan'
+							element={
+								articles !== [] &&
+								articles.map((artic, index) => (
+									<Vegan key={index} article={artic} />
+								))
+							}
+						/>
+					</Routes>
+				</div>
 			</BrowserRouter>
 		</div>
 	);
